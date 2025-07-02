@@ -31,3 +31,5 @@ questions = [
     {"question": "هل تحب التحديات العقلية؟", "options": ["نعم", "أحيانًا", "لا"]},
     {"question": "هل تعتبر الرياضة هوية لك؟", "options": ["نعم", "لا", "أحاول أن أجعلها كذلك"]},
 ]
+def get_smart_questions():
+    return questions
