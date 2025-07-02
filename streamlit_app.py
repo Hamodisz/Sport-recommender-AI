@@ -1,5 +1,5 @@
 import streamlit as st
-from backend.main import generate_sport_recommendation
+from backend_folder.backend import generate_sport_recommendation
 import base64
 import os
 
