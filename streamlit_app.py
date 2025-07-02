@@ -3,12 +3,12 @@ from backend import generate_sport_recommendation
 import base64
 import os
 
-from shared.utils import save_to_csv, generate_image, get_smart_questions
+from shared_utils import save_to_csv, generate_image, get_smart_questions
 
 st.set_page_config(page_title="Sport Recommender", layout="centered")
 
 # العنوان والوصف
-st.title("🥇 اكشف الرياضة المناسبة لك")
+st.title("🏅 اكتشف الرياضة المناسبة لك")
 st.markdown("أجب على الأسئلة التالية وسنقترح لك رياضة تناسب شخصيتك.")
 
 # اختيار اللغة
@@ -32,9 +32,5 @@ if st.button("🔍 احصل على التوصية"):
     st.subheader("🌱 توصيك الرياضية:")
     st.success(recommendation)
 
-    # حفظ البيانات في CSV
+    # حفظ في CSV
     save_to_csv(all_answers, recommendation)
-
-    # نسخ التوصية
-    st.markdown("### 📋 انسخ النتيجة:")
-    st.code(recommendation, language=None)
