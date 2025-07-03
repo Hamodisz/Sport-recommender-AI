@@ -1,20 +1,19 @@
-
 import openai
-import os
+import streamlit as st
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-def generate_sport_recommendation(answers, lang):
-    prompt = build_prompt(answers, lang)
+def generate_sport_recommendation(user_answers, language="ar"):
+    if language == "ar":
+        prompt = f"""بناءً على إجابات المستخدم التالية، اقترح له رياضة مناسبة تمامًا لشخصيته واهتماماته وخبرته السابقة. ووضح السبب:
+{user_answers}"""
+    else:
+        prompt = f"""Based on the user's answers below, recommend the most suitable sport that matches their personality, interests, and experience. Explain why:
+{user_answers}"""
+
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{ "role": "user", "content": prompt }]
+        messages=[{"role": "system", "content": prompt}]
     )
-    return response.choices[0].message["content"]
 
-def build_prompt(answers, lang):
-    joined = "\n".join([f"{k}: {v}" for k, v in answers.items()])
-    if lang == "العربية":
-        return f"بناءً على إجابات المستخدم التالية، اقترح له رياضة واحدة مناسبة تمامًا مع شرح قصير:\n{joined}"
-    else:
-        return f"Based on the user's answers below, suggest ONE perfect sport with a short explanation:\n{joined}"
+    return response.choices[0].message.content
