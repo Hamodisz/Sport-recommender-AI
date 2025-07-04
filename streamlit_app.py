@@ -1,4 +1,8 @@
+import json
 
+def load_questions(filename):
+    with open(filename, "r", encoding="utf-8") as f:
+        return json.load(f)
 import streamlit as st
 import os
 from backend import generate_sport_recommendation
