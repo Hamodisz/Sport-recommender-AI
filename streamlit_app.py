@@ -6,7 +6,7 @@ def load_questions(filename):
 import streamlit as st
 import os
 from backend import generate_sport_recommendation
-from shared_utils import load_questions
+
 
 # إعداد اللغة
 st.set_page_config(page_title="Sport Recommender", layout="centered")
